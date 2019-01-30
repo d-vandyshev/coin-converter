@@ -1,0 +1,4 @@
+:schedule:
+  fetch_cryptocurrencies:
+    every: 5m
+    class: FetchCryptocurrenciesWorker
