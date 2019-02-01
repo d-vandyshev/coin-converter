@@ -1,4 +1,7 @@
+:concurrency: 2
+max_retries: 3
+
 :schedule:
-  fetch_cryptocurrencies:
-    every: 5m
+  fetch_cryptocurrencies_to_db:
+    every: ['5m', first_in: '0s']
     class: FetchCryptocurrenciesWorker
