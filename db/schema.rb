@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_31_113347) do
+ActiveRecord::Schema.define(version: 2019_02_01_074243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversions", force: :cascade do |t|
+    t.bigint "from_currency_id"
+    t.bigint "to_currency_id"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_currency_id"], name: "index_conversions_on_from_currency_id"
+    t.index ["to_currency_id"], name: "index_conversions_on_to_currency_id"
+  end
 
   create_table "cryptocurrencies", force: :cascade do |t|
     t.string "name"
@@ -23,4 +33,6 @@ ActiveRecord::Schema.define(version: 2019_01_31_113347) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "conversions", "cryptocurrencies", column: "from_currency_id"
+  add_foreign_key "conversions", "cryptocurrencies", column: "to_currency_id"
 end
