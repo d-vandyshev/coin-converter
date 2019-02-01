@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'sidekiq', '5.2.5'
 gem 'sidekiq-scheduler', '3.0.0'
 gem 'typhoeus'
+gem 'activerecord-import'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
