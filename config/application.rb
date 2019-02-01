@@ -31,5 +31,11 @@ module CoinConverter
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Custom configuration section
+    # API Coinmarketcap
+    config.x.api_coinmarketcap.url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+    config.x.api_coinmarketcap.params = { limit: 5000 } # Maximum allowed limit from docs
+    config.x.api_coinmarketcap.headers = { 'X-CMC_PRO_API_KEY' => ENV['COINMARKETCAP_KEY'] }
   end
 end
