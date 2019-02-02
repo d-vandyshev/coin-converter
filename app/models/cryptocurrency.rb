@@ -4,6 +4,6 @@ class Cryptocurrency < ApplicationRecord
   has_many :to_currencies, class_name: 'Conversion', foreign_key: 'to_currency_id'
 
   validates :name, :symbol, :price_usd, presence: true
-  validates :name, :symbol, length: { maximum: 128 }
-  validates :price_usd, numericality: true
+  validates :name, :symbol, length: {maximum: 128}
+  validates :price_usd, numericality: {greater_than: 0}
 end
