@@ -1,5 +1,5 @@
 class CryptocurrenciesController < ApplicationController
   def index
-    render json: Cryptocurrency.all.map { |c| {name: c.name, symbol: c.symbol, price_usd: c.price_usd} }
+      render json: Cryptocurrency.all, only: [:name, :symbol, :price_usd]
   end
 end
