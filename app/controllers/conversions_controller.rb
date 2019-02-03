@@ -4,12 +4,15 @@ class ConversionsController < ApplicationController
   end
 
   def new
-    c_params = params_conversion
-    from_cur = Cryptocurrency.find_by(name: c_params[:from_currency])
-    to_cur = Cryptocurrency.find_by(name: c_params[:to_currency])
-    answer = c_params[:amount] * from_cur.price_usd / to_cur.price_usd
-    Conversion.create(from_currency_id: from_cur.id, to_currency_id: to_cur.id, amount: c_params[:amount])
-    render json: {answer: answer}
+    conv_params = params_conversion
+    from = Cryptocurrency.find_by(name: conv_params[:from_currency])
+    to = Cryptocurrency.find_by(name: conv_params[:to_currency])
+    Conversion.create(
+      from_currency_id: from.id,
+      to_currency_id: to.id,
+      amount: conv_params[:amount]
+    )
+    render json: { cost: conv_params[:amount] * from.price_usd / to.price_usd }
   end
 
   private
@@ -25,10 +28,10 @@ class ConversionsController < ApplicationController
 
   def conversions(limit)
     Conversion.list_last(limit).map do |c|
-      {from_currency: c.from_currency.name,
-       to_currency: c.to_currency.name,
-       amount: c.amount,
-       created_at: c.created_at}
+      { from_currency: c.from_currency.name,
+        to_currency: c.to_currency.name,
+        amount: c.amount,
+        created_at: c.created_at }
     end
   end
 end
