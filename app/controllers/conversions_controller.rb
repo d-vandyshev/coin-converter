@@ -1,6 +1,6 @@
 class ConversionsController < ApplicationController
   def index
-    render json: Conversion.all.map { |c| {from_currency_id: c.from_currency_id, to_currency_id: c.to_currency_id, amount: c.amount} }
+    render json: conversions(param_limit)
   end
 
   def new
@@ -16,5 +16,19 @@ class ConversionsController < ApplicationController
 
   def params_conversion
     params.require(:conversion).permit(:from_currency, :to_currency, :amount)
+  end
+
+  def param_limit
+    params[:limit] ||= Rails.configuration.x.conversions.default_limit
+    params[:limit].to_i
+  end
+
+  def conversions(limit)
+    Conversion.list_last(limit).map do |c|
+      {from_currency: c.from_currency.name,
+       to_currency: c.to_currency.name,
+       amount: c.amount,
+       created_at: c.created_at}
+    end
   end
 end

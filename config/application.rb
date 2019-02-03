@@ -37,5 +37,7 @@ module CoinConverter
     config.x.api_coinmarketcap.url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
     config.x.api_coinmarketcap.params = { limit: 5000 } # Maximum allowed limit from docs
     config.x.api_coinmarketcap.headers = { 'X-CMC_PRO_API_KEY' => ENV['COINMARKETCAP_KEY'] }
+    # ConversionsController
+    config.x.conversions.default_limit = 10
   end
 end
