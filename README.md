@@ -1,8 +1,12 @@
-# coin-converter
+# Coin Converter
 
-API-only web-app for convert coins via CoinMarketCap (RoR)
+API-only Rails-app for convert coins with CoinMarketCap
 
-Things to cover:
+## Custom error handling
+
+Not implemented
+
+## Things to cover
 
 * Ruby version
 
