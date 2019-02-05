@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   get 'cryptocurrencies', to: 'cryptocurrencies#index'
   get 'conversions', to: 'conversions#index'
   post 'conversions', to: 'conversions#new'
+
+  # Swagger UI
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
 end

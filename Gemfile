@@ -30,7 +30,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'sidekiq', '5.2.5'
 gem 'sidekiq-scheduler', '3.0.0'
+# Get cryptocurrencies in sidekiq worker
 gem 'typhoeus'
+# Batch import in sidekiq worker
 gem 'activerecord-import'
 
 group :development, :test do
@@ -38,6 +40,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rubocop', require: false
   gem 'rspec-rails', '~> 3.8'
+  # Generate Swagger files
+  gem 'rswag'
 end
 
 group :development do
@@ -46,7 +50,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

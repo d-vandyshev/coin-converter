@@ -26,3 +26,7 @@ AllCops:
     - tmp/*
     - db/schema.rb
     - db/migrate/*
+    - config/initializers/rswag-ui.rb
+    - config/initializers/rswag-api.rb
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
