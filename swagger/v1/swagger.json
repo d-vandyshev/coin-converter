@@ -1,0 +1,168 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/cryptocurrencies": {
+      "get": {
+        "summary": "Retrieves all cryptocurrencies",
+        "tags": [
+          "Cryptocurrencies"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Bitcoin"
+                  },
+                  "symbol": {
+                    "type": "string",
+                    "example": "BTC"
+                  },
+                  "price_usd": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 3467.12651186
+                  }
+                },
+                "required": [
+                  "name",
+                  "symbol",
+                  "price_usd"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/conversions": {
+      "get": {
+        "summary": "Retrieves conversions",
+        "tags": [
+          "Cryptocurrencies"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "description": "number of records to return",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "from_currency": {
+                    "type": "string",
+                    "example": "Bitcoin"
+                  },
+                  "to_currency": {
+                    "type": "string",
+                    "example": "Ethereum"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 1.25
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2019-02-01T15:35:28.898Z"
+                  }
+                },
+                "required": [
+                  "from_currency",
+                  "to_currency",
+                  "amount",
+                  "created_at"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a coinversion",
+        "tags": [
+          "Cryptocurrencies"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "place for request data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "conversion": {
+                  "type": "object",
+                  "properties": {
+                    "from_currency": {
+                      "type": "string",
+                      "example": "Bitcoin"
+                    },
+                    "to_currency": {
+                      "type": "string",
+                      "example": "Ethereum"
+                    },
+                    "amount": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 1.25
+                    }
+                  },
+                  "required": [
+                    "from_currency",
+                    "to_currency",
+                    "amount"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful convert",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cost": {
+                  "type": "number",
+                  "format": "float",
+                  "example": 4.75
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
